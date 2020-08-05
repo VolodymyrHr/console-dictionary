@@ -8,7 +8,7 @@ namespace console_dictionary
     {
         static void Main(string[] args)
         {
-            string[] text = { "I live in Cherkassy Cherkassy is beautiful city Beautiful people live hear", "I live in Cherkassy Cherkassy is beautiful city Beautiful people live hear" };
+            string[] text = { "I live in Cherkassy Cherkassy is is is is beautiful city Beautiful people live hear", "I live in Cherkassy Cherkassy is beautiful city Beautiful people live hear" };
             var f = CountWordFrequency(text);
             Console.WriteLine((f.Count == 0) ? "empty word list" : "all right");
             DrawDictionary(f);
@@ -20,10 +20,9 @@ namespace console_dictionary
 
             foreach (string row in text)
             {
-                string[] words = row.Split(' ');
+                string[] words = row.ToLower().Split(' ');
                 foreach (string word in words)
                 {
-                    // Console.WriteLine(word);
                     if (!frequency.ContainsKey(word))
                     {
                         frequency.Add(word, 1);
@@ -36,7 +35,6 @@ namespace console_dictionary
                         frequency.Add(word, previousCount + 1);
                     }
                 }
-
             }
             return frequency;
         }
